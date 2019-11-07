@@ -10,7 +10,7 @@ int main(void)
     
     clear_screen();
     
-    xor_sprite(sprite_data,100,100);
+    xor_sprite(sprite_data,0,0);
     
     while(1){};
     
