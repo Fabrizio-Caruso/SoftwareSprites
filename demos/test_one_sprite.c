@@ -28,6 +28,14 @@ int main(void)
         {
             x+=8;
         }
+        else if(ch=='i')
+        {
+            y-=1;
+        }
+        else if(ch=='k')
+        {
+            y+=1;
+        }
         
     }
     while(1){};

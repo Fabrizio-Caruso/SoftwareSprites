@@ -1,7 +1,6 @@
 
 #include <peekpoke.h>
 #include <stdint.h>
-// #include <stdio.h>
 
 #include "software_sprites.h"
 
@@ -51,21 +50,26 @@ void clear_screen(void)
 
 void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
 {
-    uint8_t i;
+    uint8_t i,j;
+    uint8_t offset;
     uint16_t loc;
     
     if(x%8==0)
     {
-        if(y%8==0)
+        offset=y%8;
+        i=0;
         {
-            for(i=0;i<8;++i)
+            do
             {
-                loc = SCREEN_START+x+(uint16_t) y*40 + i;
+                loc = SCREEN_START+x+(uint16_t) (y/8)*320 + i + offset;
                 POKE(loc,PEEK(loc)^sprite_data[i]);
-                // printf("y, y*5: %u, %u\n", (uint16_t) y, (uint16_t) y*5);
-                
+                ++i;
+            } while ((y+i)%8>0);
+            loc+=313;
+            for(j=0;j<offset;++j,++i,++loc)
+            {
+                POKE(loc,PEEK(loc)^sprite_data[i]);
             }
-            // printf("\n\n");
         }
     }
 }
