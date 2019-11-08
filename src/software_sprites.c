@@ -51,13 +51,11 @@ void clear_screen(void)
 void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
 {
     uint8_t i;
-    uint8_t offset;
     uint16_t loc;
      
     if(x%8==0)
     {
-        offset=y%8;
-        loc = SCREEN_START+x+(uint16_t) (y/8)*320 + offset;
+        loc = SCREEN_START+x+(uint16_t) (y/8)*320 + y%8;
         i=0;
         {
             do
