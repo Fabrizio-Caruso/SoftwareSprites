@@ -3,7 +3,9 @@ CC65_PATH ?=
 SOURCE_PATH ?= ./src
 DEMOS_PATH ?= ./demos
 BUILD_PATH ?= ./build
+CFG_PATH ?= ./cfg
 
+MYCFG= --config $(CFG_PATH)/c16_gfx.cfg
 MYCCFLAGS=-t c16 -O -Cl
 
 ifneq ($(COMSPEC),)

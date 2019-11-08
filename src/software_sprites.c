@@ -53,26 +53,17 @@ void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
     uint8_t i;
     uint16_t loc;
     
-    uint8_t j;
-    
-    for(j=0;j<8;++j)
+    if(x%8==0)
     {
-        for(i=0;i<8;++i)
+        if(y%8==0)
         {
-            POKE(SCREEN_START+8*j+i,sprite_data[i]);
+            for(i=0;i<8;++i)
+            {
+                loc = SCREEN_START+((uint16_t)x/8)+(((uint16_t) y)>>3)*40+i;
+                POKE(loc,PEEK(loc)^sprite_data[i]);
+            }
         }
     }
-    // if(x%8==0)
-    // {
-        // if(y%8==0)
-        // {
-            // for(i=0;i<8;++i)
-            // {
-                // loc = SCREEN_START+(x/8)*(y/8)*320;
-                // POKE(loc,PEEK(loc)^sprite_data[i]);
-            // }
-        // }
-    // }
 }
 
 
