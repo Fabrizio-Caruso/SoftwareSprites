@@ -1,10 +1,11 @@
 
 #include <peekpoke.h>
 #include <stdint.h>
+// #include <stdio.h>
 
 #include "software_sprites.h"
 
-#define SCREEN_START 0x2000
+#define SCREEN_START ((uint16_t) 0x2000u)
 #define SCREEN_END (SCREEN_START+8000)
 #define LUMA_START 0x1800
 #define LUMA_END (LUMA_START+1000)
@@ -59,9 +60,12 @@ void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
         {
             for(i=0;i<8;++i)
             {
-                loc = SCREEN_START+((uint16_t)x/8)+(((uint16_t) y)>>3)*40+i;
+                loc = SCREEN_START+x+(uint16_t) y*40 + i;
                 POKE(loc,PEEK(loc)^sprite_data[i]);
+                // printf("y, y*5: %u, %u\n", (uint16_t) y, (uint16_t) y*5);
+                
             }
+            // printf("\n\n");
         }
     }
 }

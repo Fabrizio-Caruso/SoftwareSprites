@@ -6,19 +6,29 @@ const uint8_t sprite_data[8] = { 24, 36, 24,102,153, 24, 36,102};
 
 int main(void)
 {
-    uint16_t i;
+    uint16_t x;
+    uint8_t y;
+    uint8_t ch;
     
     bitmap_mode();
     
     clear_screen();
     
-    i=0;
+    y=0;
     while(1)
     {
-        xor_sprite(sprite_data,8*i,32);
-        cgetc();
-        xor_sprite(sprite_data,8*i,32);        
-        i+=8;
+        xor_sprite(sprite_data,x,y);
+        ch=cgetc();
+        xor_sprite(sprite_data,x,y);        
+        if(ch=='j')
+        {
+            x-=8;
+        }
+        else if(ch=='l')
+        {
+            x+=8;
+        }
+        
     }
     while(1){};
     
