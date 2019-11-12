@@ -22,11 +22,11 @@ int main(void)
         xor_sprite(sprite_data,x,y);        
         if(ch=='j')
         {
-            x-=8;
+            x-=1;
         }
         else if(ch=='l')
         {
-            x+=8;
+            x+=1;
         }
         else if(ch=='i')
         {
