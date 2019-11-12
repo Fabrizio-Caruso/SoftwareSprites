@@ -53,19 +53,18 @@ void clear_screen(void)
 }
 
 
-void _left_display(const uint16_t loc, const uint8_t data, const uint8_t offset)
+void _display(uint16_t loc, const uint8_t data, const uint8_t offset)
 {
     POKE(loc,PEEK(loc)^(data>>offset));
+    if(offset)
+    {
+        loc+=8;
+        POKE(loc,PEEK(loc)^(data<<(8-offset)));
+    }    
 }
 
 
-void _right_display(const uint16_t loc, const uint8_t data, const uint8_t offset)
-{
-    POKE(loc,PEEK(loc)^(data<<(8-offset)));
-}
-
-
-void _xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
+void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
 {
     uint8_t i;
     uint16_t loc;
@@ -78,66 +77,16 @@ void _xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
     {
         do
         {
-            _left_display(loc,sprite_data[i],offset);
-            if(offset)
-            {
-                _right_display(loc+8,sprite_data[i],offset);
-            }
-            // POKE(loc,PEEK(loc)^(sprite_data[i]>>offset));
+            _display(loc,sprite_data[i],offset);
             ++loc;
             ++i;
         } while (i<upper_end);
         loc+=312;
         for(;i<8;++i,++loc)
         {
-            _left_display(loc,sprite_data[i],offset);
-            if(offset)
-            {
-                _right_display(loc+8,sprite_data[i],offset);
-            }            
-            // POKE(loc,PEEK(loc)^(sprite_data[i]>>offset));
+            _display(loc,sprite_data[i],offset);            
         }
     }
 }
-
-// void _xor_sprite_right(const uint8_t* sprite_data, uint8_t offset, uint16_t x, uint8_t y)
-// {
-    // uint8_t i;
-    // uint16_t loc;
-    // uint8_t upper = y&7;
-    // uint8_t upper_end = 8-upper;   
-
-    // loc = upper + SCREEN_START+(x/8)*8+(uint16_t) (y>>3)*320;
-    // i=0;
-    // {
-        // do
-        // {
-            // POKE(loc,PEEK(loc)^(sprite_data[i]<<(8-offset)));
-            // ++loc;
-            // ++i;
-        // } while (i<upper_end);
-        // loc+=312;
-        // for(;i<8;++i,++loc)
-        // {
-            // POKE(loc,PEEK(loc)^(sprite_data[i]<<(8-offset)));
-        // }
-    // }
-// }
-
-
-
-void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
-{
- 
-    // uint8_t offset = x&7; 
- 
-    _xor_sprite(sprite_data, x,y);
-    // if(offset)
-    // {
-    // _xor_sprite_right(sprite_data, x+8,y);
-    // }
-}
-
-
 
 
