@@ -11,6 +11,10 @@
 #define CHROMA_START 0x1C00
 #define CHROMA_END (CHROMA_START+1000)
 
+
+static const uint8_t sprite_data[8] = {0x7E,0xC3,0x81,0xDB,0x7E,0x99,0x42,0xE7};
+
+
 void bitmap_mode(void)
 {
     // Set bitmap_mode
@@ -27,6 +31,7 @@ void bitmap_mode(void)
     // Set luma/chroma background color
     // POKE(0xFF15,255);
 }
+
 
 void clear_screen(void)
 {
@@ -59,7 +64,7 @@ void _display(uint16_t loc, uint8_t data, uint8_t offset)
 }
 
 
-void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
+void xor_sprite(uint16_t x, uint8_t y)
 {
     uint8_t i;
     uint16_t loc;
