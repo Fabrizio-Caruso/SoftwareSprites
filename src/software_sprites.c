@@ -23,27 +23,27 @@ void bitmap_mode(void)
     // POKE(0xFF15,255);
 }
 
-
+#if !defined(GFX)
 void clear_screen(void)
 {
     unsigned short i;
     
-    #if !defined(GFX)
     for(i=SCREEN_START;i<SCREEN_END;++i)
     {
         POKE(i,0);
     }
-    #endif
+
     for(i=LUMA_START;i<LUMA_END;++i)
     {
         POKE(i,7);
     }
+
     for(i=CHROMA_START;i<CHROMA_END;++i)
     {
         POKE(i,0xFF-1);
     }
 }
-
+#endif
 
 void _display(register uint16_t loc, uint8_t data, uint8_t offset)
 {

@@ -10,7 +10,9 @@ int main(void)
     
     bitmap_mode();
     
-    clear_screen();
+    #if !defined(GFX)
+        clear_screen();
+    #endif
     
     while(1)
     {
