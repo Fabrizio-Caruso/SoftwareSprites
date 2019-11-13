@@ -11,11 +11,6 @@
 #define CHROMA_START 0x1C00
 #define CHROMA_END (CHROMA_START+1000)
 
-// enum{
-    // LEFT_SIDE,
-    // RIGHT_SIDE
-// };
-
 void bitmap_mode(void)
 {
     // Set bitmap_mode

@@ -2,7 +2,7 @@
 #include <conio.h>
 #include "../src/software_sprites.h"
 
-const uint8_t sprite_data[8] = { 24, 36, 24,102,153, 24, 36,102};
+const uint8_t sprite_data[8] = {0x7E,0xC3,0x81,0xDB,0x7E,0x99,0x42,0xE7};
 
 int main(void)
 {
