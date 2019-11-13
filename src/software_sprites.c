@@ -53,7 +53,7 @@ void clear_screen(void)
 }
 
 
-void _display(uint16_t loc, const uint8_t data, const uint8_t offset)
+void _display(uint16_t loc, uint8_t data, uint8_t offset)
 {
     POKE(loc,PEEK(loc)^(data>>offset));
     if(offset)
@@ -70,21 +70,20 @@ void xor_sprite(const uint8_t* sprite_data, uint16_t x, uint8_t y)
     uint16_t loc;
     uint8_t upper = y&7;
     uint8_t upper_end = 8-upper;
-    uint8_t offset = x&7;     
 
     loc = upper + SCREEN_START+(x/8)*8+(uint16_t) (y>>3)*320;
     i=0;
     {
         do
         {
-            _display(loc,sprite_data[i],offset);
+            _display(loc,sprite_data[i],x&7);
             ++loc;
             ++i;
         } while (i<upper_end);
         loc+=312;
         for(;i<8;++i,++loc)
         {
-            _display(loc,sprite_data[i],offset);            
+            _display(loc,sprite_data[i],x&7);            
         }
     }
 }
