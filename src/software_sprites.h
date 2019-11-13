@@ -11,7 +11,7 @@ void bitmap_mode(void);
 
 void clear_screen(void);
 
-void xor_sprite(uint16_t x, uint8_t y);
+void xor_sprite(uint8_t x, uint8_t y);
 
 
 #endif // _SOFTWARE_SPRITE_H

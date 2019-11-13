@@ -64,7 +64,7 @@ void _display(uint16_t loc, uint8_t data, uint8_t offset)
 }
 
 
-void xor_sprite(uint16_t x, uint8_t y)
+void xor_sprite(uint8_t x, uint8_t y)
 {
     uint8_t i;
     uint16_t loc;
