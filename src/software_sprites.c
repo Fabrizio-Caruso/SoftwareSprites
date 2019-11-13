@@ -4,16 +4,7 @@
 
 #include "software_sprites.h"
 
-#define SCREEN_START ((uint16_t) 0x2000u)
-#define SCREEN_END (SCREEN_START+8000)
-#define LUMA_START 0x1800
-#define LUMA_END (LUMA_START+1000)
-#define CHROMA_START 0x1C00
-#define CHROMA_END (CHROMA_START+1000)
-
-
-static const uint8_t sprite_data[8] = {0x7E,0xC3,0x81,0xDB,0x7E,0x99,0x42,0xE7}; // Lunar lander
-
+static const uint8_t sprite_data[SPRITE_HEIGHT] = LUNAR_LANDER_DATA;
 
 void bitmap_mode(void)
 {
@@ -70,7 +61,7 @@ void xor_sprite(uint8_t x, uint8_t y)
     uint8_t upper_end = 8-upper;
     uint8_t i = 0;    
 
-    loc = upper + SCREEN_START+((x>>3)<<3)+((uint16_t) (y>>3)<<6)*5; // (...<<6)*5 = *320
+    loc = upper + SCREEN_START+(x&(0xF8))+((uint16_t) (y&(0xF8))<<3)*5; // (...<<6)*5 = *320
     {
         do
         {
@@ -79,7 +70,7 @@ void xor_sprite(uint8_t x, uint8_t y)
             ++i;
         } while (i<upper_end);
         loc+=312;
-        for(;i<8;++i,++loc)
+        for(;i<SPRITE_HEIGHT;++i,++loc)
         {
             _display(loc,sprite_data[i],x&7);            
         }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "../src/software_sprites.h"
 
 int main(void)

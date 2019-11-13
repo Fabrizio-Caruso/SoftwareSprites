@@ -39,6 +39,7 @@ test_one_sprite:
 
 test_speed:
 	$(CC65_PATH)$(MYCL65) $(MYCCFLAGS) $(MYCFG) \
+	-DSTART_SCREEN=16384 \
 	$(SOURCE_PATH)/software_sprites.c \
 	$(DEMOS_PATH)/test_speed.c \
 	-o $(BUILD_PATH)/test_speed.prg

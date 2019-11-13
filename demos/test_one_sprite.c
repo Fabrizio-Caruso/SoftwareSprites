@@ -4,15 +4,14 @@
 
 int main(void)
 {
-    uint8_t x;
-    uint8_t y;
     uint8_t ch;
+    uint8_t x = 100;
+    uint8_t y = 90;
     
     bitmap_mode();
     
     clear_screen();
     
-    y=0;
     while(1)
     {
         xor_sprite(x,y);
