@@ -37,6 +37,12 @@ test_one_sprite:
 	$(DEMOS_PATH)/test_one_sprite.c \
 	-o $(BUILD_PATH)/test_one_sprite.prg
 
+test_speed:
+	$(CC65_PATH)$(MYCL65) $(MYCCFLAGS) $(MYCFG) \
+	$(SOURCE_PATH)/software_sprites.c \
+	$(DEMOS_PATH)/test_speed.c \
+	-o $(BUILD_PATH)/test_speed.prg
+
 
 ####################################################
 clean:
@@ -48,7 +54,8 @@ clean:
 
    
 all: \
-    test_one_sprite
+    test_one_sprite \
+    test_speed
 
 
 

@@ -34,7 +34,6 @@ int main(void)
         {
             y+=1;
         }
-        
     }
     while(1){};
     
