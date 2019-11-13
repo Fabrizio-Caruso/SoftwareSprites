@@ -66,13 +66,12 @@ void _display(uint16_t loc, uint8_t data, uint8_t offset)
 
 void xor_sprite(uint8_t x, uint8_t y)
 {
-    uint8_t i;
     uint16_t loc;
     uint8_t upper = y&7;
     uint8_t upper_end = 8-upper;
+    uint8_t i = 0;    
 
     loc = upper + SCREEN_START+(x/8)*8+(uint16_t) (y>>3)*64*5;
-    i=0;
     {
         do
         {
