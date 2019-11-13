@@ -53,7 +53,7 @@ void clear_screen(void)
 }
 
 
-void _display(uint16_t loc, uint8_t data, uint8_t offset)
+void _display(register uint16_t loc, uint8_t data, uint8_t offset)
 {
     POKE(loc,PEEK(loc)^(data>>offset));
     if(offset)

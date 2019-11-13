@@ -6,7 +6,7 @@ BUILD_PATH ?= ./build
 CFG_PATH ?= ./cfg
 
 MYCFG= --config $(CFG_PATH)/c16_gfx.cfg
-MYCCFLAGS=-t c16 -O -Cl
+MYCCFLAGS=-t c16 -Or -Cl
 
 ifneq ($(COMSPEC),)
 DO_WIN:=1
