@@ -49,7 +49,6 @@ void clear_screen(void)
     {
         POKE(i,0xFF-1);
     }
-    
 }
 
 
@@ -71,7 +70,7 @@ void xor_sprite(uint8_t x, uint8_t y)
     uint8_t upper_end = 8-upper;
     uint8_t i = 0;    
 
-    loc = upper + SCREEN_START+(x/8)*8+(uint16_t) (y>>3)*64*5;
+    loc = upper + SCREEN_START+((x>>3)<<3)+((uint16_t) (y>>3)<<6)*5; // (...<<6)*5 = *320
     {
         do
         {
