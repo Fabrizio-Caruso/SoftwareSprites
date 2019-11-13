@@ -12,7 +12,7 @@
 #define CHROMA_END (CHROMA_START+1000)
 
 
-static const uint8_t sprite_data[8] = {0x7E,0xC3,0x81,0xDB,0x7E,0x99,0x42,0xE7};
+static const uint8_t sprite_data[8] = {0x7E,0xC3,0x81,0xDB,0x7E,0x99,0x42,0xE7}; // Lunar lander
 
 
 void bitmap_mode(void)
@@ -71,7 +71,7 @@ void xor_sprite(uint16_t x, uint8_t y)
     uint8_t upper = y&7;
     uint8_t upper_end = 8-upper;
 
-    loc = upper + SCREEN_START+(x/8)*8+(uint16_t) (y>>3)*320;
+    loc = upper + SCREEN_START+(x/8)*8+(uint16_t) (y>>3)*64*5;
     i=0;
     {
         do
