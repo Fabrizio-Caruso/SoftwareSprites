@@ -5,6 +5,8 @@
 
 #include "../src/software_sprites.h"
 
+#define DOUBLE_XOR_LOOPS 190
+
 int main(void)
 {
     clock_t Ticks, TicksDelta;
@@ -19,7 +21,7 @@ int main(void)
         getchar();
         printf("\nComputing...\n"); 
         Ticks = clock();    
-        for(x=0;x<190;++x)
+        for(x=0;x<DOUBLE_XOR_LOOPS;++x)
         {
             xor_sprite(x,x);
             xor_sprite(x,x);

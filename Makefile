@@ -4,8 +4,11 @@ SOURCE_PATH ?= ./src
 DEMOS_PATH ?= ./demos
 BUILD_PATH ?= ./build
 CFG_PATH ?= ./cfg
+GFX_PATH ?= ./graphics
 
-MYCFG= --config $(CFG_PATH)/c16_gfx.cfg
+MYCFG= --config $(CFG_PATH)/c16_bitmap.cfg
+MYGFXCFG= --config $(CFG_PATH)/c16_gfx.cfg
+
 MYCCFLAGS=-t c16 -Or -Cl
 
 ifneq ($(COMSPEC),)
@@ -31,6 +34,14 @@ MYCL65 ?= cl65$(EXEEXT) $(INCLUDE_OPTS)
 # Full Kernal with: --asm-define STANDARD_IRQ=1 
 
 
+test_one_sprite_gfx:
+	$(CC65_PATH)$(MYCL65) $(MYCCFLAGS) $(MYGFXCFG) \
+	-DGFX \
+	$(SOURCE_PATH)/software_sprites.c \
+	$(DEMOS_PATH)/test_one_sprite.c \
+	$(GFX_PATH)/level.s \
+	-o $(BUILD_PATH)/test_one_sprite_with_gfx.prg
+
 test_one_sprite:
 	$(CC65_PATH)$(MYCL65) $(MYCCFLAGS) $(MYCFG) \
 	$(SOURCE_PATH)/software_sprites.c \
@@ -55,9 +66,9 @@ clean:
 
    
 all: \
-    test_one_sprite \
-    test_speed
-
+	test_one_sprite \
+	test_one_sprite_gfx \
+	test_speed 
 
 
 

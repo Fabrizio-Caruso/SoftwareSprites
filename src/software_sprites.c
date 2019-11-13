@@ -28,10 +28,12 @@ void clear_screen(void)
 {
     unsigned short i;
     
+    #if !defined(GFX)
     for(i=SCREEN_START;i<SCREEN_END;++i)
     {
         POKE(i,0);
     }
+    #endif
     for(i=LUMA_START;i<LUMA_END;++i)
     {
         POKE(i,7);

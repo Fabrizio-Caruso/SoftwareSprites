@@ -1,4 +1,5 @@
 /src/*.o
 /demos/*.o
 /build/*.prg
+/graphics/*.o
 
